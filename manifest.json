@@ -1,0 +1,11 @@
+{
+  "provides" : "dx12",
+  "sources" : [ "src/**" ],
+  "targets" : {
+    "windows-x64" : {
+      "link-args" : [],
+      "dependencies" : [],
+      "linked-libraries" : [ "d3d12", "dxgi", "D3DCompiler" ]
+    }
+  }
+}
