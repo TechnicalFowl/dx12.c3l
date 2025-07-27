@@ -112,14 +112,14 @@ enum Dx_D3D_PRIMITIVE : const
 // Vtbl function interfaces
 ////////////////////////////////////////////////////////////////////////////////
 
-alias GetBufferPointer = fn void*(void*);
-alias GetBufferSize = fn Win32_SIZE_T(void*);
+alias GetBufferPointer @private = fn void*(void*);
+alias GetBufferSize @private = fn Win32_SIZE_T(void*);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Interfaces
 ////////////////////////////////////////////////////////////////////////////////
 
-struct ID3DBlobVtbl
+struct ID3DBlobVtbl @private
 {
     QueryInterface query_interface;
     AddRef add_ref;

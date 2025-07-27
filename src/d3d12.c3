@@ -47,6 +47,11 @@ alias ID3D12VersionedRootSignatureDeserializerRaw = void;
 // Vtbl function interfaces
 ////////////////////////////////////////////////////////////////////////////////
 
+module d3d12 @private;
+
+import std::os::win32;
+import dxgi;
+
 alias AddToStateObject = fn Win32_HRESULT(void*, Dx_D3D12_STATE_OBJECT_DESC*, ID3D12StateObjectRaw*, Win32_REFIID, void**);
 alias ApplyToGlobalState = fn Win32_HRESULT(void*);
 alias AtomicCopyBufferUINT = fn void(void*, ID3D12ResourceRaw*, Win32_UINT64, ID3D12ResourceRaw*, Win32_UINT64, Win32_UINT, ID3D12ResourceRaw**, Dx_D3D12_SUBRESOURCE_RANGE_UINT64*);
@@ -333,6 +338,11 @@ alias WriteToSubresource = fn Win32_HRESULT(void*, Win32_UINT, Dx_D3D12_BOX*, vo
 // Interfaces
 ////////////////////////////////////////////////////////////////////////////////
 
+module d3d12;
+
+import std::os::win32;
+import dxgi;
+
 struct ID3D12ObjectVtbl @private
 {
     // IUnknown methods
@@ -355,7 +365,7 @@ interface ID3D12Object : IUnknown
     fn void? set_name(WString name);
 }
 
-fn void? set_name_helper(void* this, SetName func, WString name)
+fn void? set_name_helper(void* this, SetName func, WString name) @private
 {
     Win32_HRESULT hr = func(this, name);
     if (hr != S_OK) check_hresult(hr)!;

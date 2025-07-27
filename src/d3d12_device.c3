@@ -595,7 +595,7 @@ fn IUnknown? ID3D12DeviceImpl.open_shared_handle(&self, Win32_HANDLE handle, Win
         fenceImpl.raw = (ID3D12FenceRaw*) resource;
         return fenceImpl;
     default:
-        abort("Unsupported interface for open_shared_handle: %s", *riid);
+        abort("Unsupported interface for open_shared_handle");
     }
 }
 

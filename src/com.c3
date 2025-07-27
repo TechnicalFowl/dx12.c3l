@@ -1,4 +1,4 @@
-module d3d12;
+module d3d12 @private;
 
 import std::os::win32;
 
@@ -21,7 +21,7 @@ alias GetParent = fn Win32_HRESULT(void*, Win32_REFIID, void**);
 // Loose Functions
 ////////////////////////////////////////////////////////////////////////////////
 
-struct IUnknownVtbl @private
+struct IUnknownVtbl
 {
     QueryInterface query_interface;
     AddRef add_ref;
@@ -71,7 +71,7 @@ fn void*? get_parent_helper(void* this, GetParent func, Win32_REFIID id)
     return result;
 }
 
-macro @safe_release(#var)
+macro @safe_release(#var) @public
 {
     if (#var != null)
     {

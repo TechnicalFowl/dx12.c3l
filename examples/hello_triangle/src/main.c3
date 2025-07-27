@@ -367,7 +367,7 @@ fn int main(String[] args)
     win32::showWindow(g_hwnd, win32::SW_NORMAL);
 
     Win32_MSG msg;
-    while (msg.message != WindowMessage.WM_QUIT.msg)
+    while (msg.message != WindowMessage.WM_QUIT)
     {
         if (win32::peekMessageW(&msg, null, 0, 0, win32::PM_REMOVE))
         {
@@ -387,7 +387,7 @@ fn int main(String[] args)
 
 fn Win32_LRESULT window_proc(Win32_HWND hwnd, Win32_UINT pmsg, Win32_WPARAM wparam, Win32_LPARAM lparam)
 {
-    WindowMessage msg = WindowMessage.lookup_field(msg, pmsg) ?? WM_NULL;
+    WindowMessage msg = (WindowMessage) pmsg;
     switch (msg)
     {
     case WM_PAINT:
